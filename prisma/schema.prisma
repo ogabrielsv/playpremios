@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Campaign {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  imageUrl    String
+  price       Float
+  drawDate    DateTime
+  winnerNumber String? // Número sorteado
+  status      String   @default("ACTIVE") // ACTIVE, COMPLETED, CANCELLED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tickets     Ticket[]
+}
+
+model Participant {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  phone     String
+  state     String?
+  createdAt DateTime @default(now())
+  tickets   Ticket[]
+}
+
+model Ticket {
+  id            String      @id @default(uuid())
+  number        String
+  status        String      @default("SOLD") // RESERVED, SOLD
+  campaignId    String
+  participantId String
+  campaign      Campaign    @relation(fields: [campaignId], references: [id])
+  participant   Participant @relation(fields: [participantId], references: [id])
+  purchasedAt   DateTime    @default(now())
+
+  @@unique([campaignId, number])
+}
+
+model RateLimiter {
+  id          String   @id @default(uuid())
+  identifier  String   // IP or Email
+  type        String   // "IP" or "EMAIL"
+  attempts    Int      @default(1)
+  lastAttempt DateTime @default(now())
+  campaignId  String
+  
+  @@unique([identifier, type, campaignId])
+  @@index([identifier, type, campaignId])
+}
+
