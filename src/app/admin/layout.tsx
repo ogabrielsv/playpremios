@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Trophy, Plus, LogOut } from 'lucide-react';
+import { LayoutDashboard, Trophy, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const menuItems = [

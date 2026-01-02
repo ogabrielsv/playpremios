@@ -29,6 +29,8 @@ export async function GET() {
             totalParticipants,
         });
     } catch (error) {
+        console.error('Error fetching stats:', error);
         return NextResponse.json({ error: 'Failed to fetch stats' }, { status: 500 });
     }
+
 }

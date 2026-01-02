@@ -14,8 +14,10 @@ export async function GET() {
         });
         return NextResponse.json(campaigns);
     } catch (error) {
+        console.error('Error fetching campaigns:', error);
         return NextResponse.json({ error: 'Failed to fetch campaigns' }, { status: 500 });
     }
+
 }
 
 // POST /api/campaigns - Create a new campaign

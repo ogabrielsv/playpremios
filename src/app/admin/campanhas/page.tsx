@@ -193,7 +193,10 @@ export default function CampanhasPage() {
                                 {/* Image */}
                                 <div className="w-20 h-20 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden flex-shrink-0">
                                     {campaign.imageUrl ? (
-                                        <img src={campaign.imageUrl} alt={campaign.title} className="w-full h-full object-cover" />
+                                        <>
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img src={campaign.imageUrl} alt={campaign.title} className="w-full h-full object-cover" />
+                                        </>
                                     ) : (
                                         <Trophy className="w-10 h-10 text-primary" />
                                     )}

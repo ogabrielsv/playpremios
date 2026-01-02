@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #0a0a0a;
-  --color-foreground: #ededed;
-  --color-primary: #00f0ff;
-  --color-primary-foreground: #000000;
-  --color-secondary: #1a1a1a;
-  --color-secondary-foreground: #ffffff;
-  --color-accent: #00f0ff;
-  --color-accent-foreground: #000000;
-  --color-destructive: #ff0000;
-  --color-destructive-foreground: #ffffff;
-  --color-muted: #262626;
-  --color-muted-foreground: #a3a3a3;
-  --color-card: #121212;
-  --color-card-foreground: #ededed;
-  --color-border: #262626;
-  --color-input: #262626;
-  --color-ring: #00f0ff;
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #00f0ff;
+  --primary-foreground: #000000;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --accent: #00f0ff;
+  --accent-foreground: #000000;
+  --destructive: #ff0000;
+  --destructive-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --card: #121212;
+  --card-foreground: #ededed;
+  --border: #262626;
+  --input: #262626;
+  --ring: #00f0ff;
 }
 
 /*
@@ -29,18 +29,15 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: #e5e7eb;
+    /* gray-200 */
   }
-}
-
-:root {
-  --background: var(--color-background);
-  --foreground: var(--color-foreground);
 }
 
 body {

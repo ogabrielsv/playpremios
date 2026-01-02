@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Gift, User, Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
-import { formatCurrency } from '@/lib/utils';
+
 
 interface Campaign {
     id: string;

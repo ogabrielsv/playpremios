@@ -35,11 +35,12 @@ export default function AdminDashboard() {
                     fetch('/api/campaigns'),
                 ]);
 
-                const statsData = await statsRes.json();
-                const campaignsData = await campaignsRes.json();
+                const statsData = await statsRes.ok ? await statsRes.json() : null;
+                const campaignsData = await campaignsRes.ok ? await campaignsRes.json() : [];
 
-                setStats(statsData);
-                setCampaigns(campaignsData);
+                if (statsData) setStats(statsData);
+                if (Array.isArray(campaignsData)) setCampaigns(campaignsData);
+
             } catch (error) {
                 console.error('Failed to fetch data:', error);
             } finally {
@@ -135,7 +136,10 @@ export default function AdminDashboard() {
                             >
                                 <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden">
                                     {campaign.imageUrl ? (
-                                        <img src={campaign.imageUrl} alt={campaign.title} className="w-full h-full object-cover" />
+                                        <>
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img src={campaign.imageUrl} alt={campaign.title} className="w-full h-full object-cover" />
+                                        </>
                                     ) : (
                                         <Trophy className="w-8 h-8 text-primary" />
                                     )}
